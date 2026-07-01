@@ -12,7 +12,84 @@ st.set_page_config(page_title="TrendyAI", page_icon="🚀", layout="wide")
 st.title("🚀 TrendyAI - Générateur de Memes & Prompts IA")
 st.markdown("**L'app tendance 2026** - Crée des memes viraux et des prompts parfaits !")
 
-st.sidebar.header("💰 Premium")
+st.sidebar.header("💰 Premium")import streamlit as st
+import random
+import datetime
+
+st.set_page_config(page_title="TrendyAI", page_icon="🚀", layout="wide", initial_sidebar_state="expanded")
+
+# Custom CSS pour un meilleur design
+st.markdown("""
+<style>
+    .big-font {font-size: 52px !important; font-weight: bold;}
+    .stButton>button {width: 100%; height: 50px;}
+</style>
+""", unsafe_allow_html=True)
+
+st.title("🚀 TrendyAI")
+st.markdown("**L'application IA virale 2026** — Memes + Prompts Premium")
+
+# Sidebar améliorée
+with st.sidebar:
+    st.header("💎 Monétisation")
+    st.markdown("**Premium** — 4,99 € / mois")
+    if st.button("🔓 S'abonner maintenant", type="primary"):
+        st.success("✅ Redirection vers Stripe (simulation)")
+        st.info("Dans la vraie version : tu reçois l'argent sur ton compte bancaire via Stripe")
+    
+    st.divider()
+    st.markdown("**Statistiques**")
+    st.metric("Utilisateurs aujourd'hui", "248")
+    st.metric("Memes créés", "1,284")
+    
+    st.divider()
+    st.caption("Connecté en tant que **Utilisateur Gratuit**")
+
+# Tabs enrichis
+tab1, tab2, tab3, tab4 = st.tabs(["🎨 Memes", "✨ Prompts IA", "💡 Idées Virales", "⭐ Premium"])
+
+with tab1:
+    st.header("Créateur de Memes Virals")
+    col1, col2 = st.columns([1,1])
+    with col1:
+        top_text = st.text_input("Texte du haut", "Quand tu as TrendyAI sur ton téléphone")
+    with col2:
+        bottom_text = st.text_input("Texte du bas", "Tout le monde veut l'utiliser")
+    
+    if st.button("Générer Meme HD 🔥", type="primary"):
+        st.image(f"https://picsum.photos/id/{random.randint(10,300)}/800/500", caption="Meme HD prêt !")
+        st.download_button("📥 Télécharger", "Meme créé avec TrendyAI", "meme.png")
+        st.success("Partage-le sur X ou TikTok pour devenir viral !")
+
+with tab2:
+    st.header("Boosteur de Prompts IA")
+    base_prompt = st.text_area("Décris ton idée", "Une Ferrari rouge volant au-dessus de Paris")
+    styles = st.multiselect("Styles", ["Cyberpunk", "Réalis tic", "Anime", "Surreal", "Studio Ghibli", "Dark", "Vibrant"], default=["Cyberpunk"])
+    
+    if st.button("🚀 Optimiser le Prompt", type="primary"):
+        enhanced = f"{base_prompt}, {', '.join(styles)}, 8k, ultra détaillé, masterpiece, best quality, tendances 2026, cinematic lighting"
+        st.code(enhanced)
+        st.balloons()
+        st.success("Copie ce prompt dans Grok Imagine ou Midjourney !")
+
+with tab3:
+    st.header("Idées de Contenu Viral")
+    if st.button("Nouvelle idée 🔥"):
+        st.write("**Idée du jour :** Crée un thread de 10 memes sur 'L'IA en 2026' avec TrendyAI → Poste sur X tous les jours.")
+
+with tab4:
+    st.header("Version Premium")
+    st.markdown("Débloque tout : illimité, HD, sans pub, templates exclusifs, historique...")
+    st.button("Passer Premium maintenant - 4,99€/mois", type="primary")
+
+# Footer
+st.markdown("---")
+st.markdown("**Comment tu gagnes de l'argent ?**")
+st.markdown("""
+- **Stripe** : Tu crées un compte → tu reçois l’argent tous les 2-7 jours sur ton compte bancaire.
+- **Lien** : [stripe.com](https://stripe.com) (très simple à connecter)
+""")
+st.caption(f"© TrendyAI - {datetime.datetime.now().year} | Développé avec ❤️ par Grok")
 if st.sidebar.button("S'abonner - 4.99€/mois"):
     st.sidebar.success("✅ Premium activé (démo)")
 
